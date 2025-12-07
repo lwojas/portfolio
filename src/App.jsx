@@ -10,7 +10,7 @@ export default function App() {
 
   // Fetch list of markdown files
   useEffect(() => {
-    fetch("/files.json")
+    fetch(`${import.meta.env.BASE_URL}files.json`)
       .then((res) => res.json())
       .then((data) => {
         setFiles(data);
@@ -21,7 +21,7 @@ export default function App() {
   // Fetch content of selected file
   useEffect(() => {
     if (!selectedFile) return;
-    fetch(`/${selectedFile}`)
+    fetch(`${import.meta.env.BASE_URL}${selectedFile}`)
       .then((res) => res.text())
       .then((text) => setContent(text));
   }, [selectedFile]);
