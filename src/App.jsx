@@ -1,0 +1,48 @@
+import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import "./App.css";
+
+export default function App() {
+  const [files, setFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [content, setContent] = useState("");
+
+  // Fetch list of markdown files
+  useEffect(() => {
+    fetch("/files.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setFiles(data);
+        if (data.length > 0) setSelectedFile(data[0]);
+      });
+  }, []);
+
+  // Fetch content of selected file
+  useEffect(() => {
+    if (!selectedFile) return;
+    fetch(`/${selectedFile}`)
+      .then((res) => res.text())
+      .then((text) => setContent(text));
+  }, [selectedFile]);
+
+  return (
+    <div className="app">
+      <nav className="nav">
+        {files.map((file) => (
+          <button
+            key={file}
+            onClick={() => setSelectedFile(file)}
+            className={file === selectedFile ? "active" : ""}
+          >
+            {file.replace(".md", "")}
+          </button>
+        ))}
+      </nav>
+
+      <div className="markdown-container">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+      </div>
+    </div>
+  );
+}
