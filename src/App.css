@@ -1,7 +1,11 @@
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fafafa;
 }
 
 .app {
@@ -10,10 +14,42 @@ body {
   padding: 2rem;
 }
 
+/* Navigation */
 .nav {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+}
+
+/* Nav Links Styling */
+/* Sleek Nav Links */
+.nav a {
+  color: #007bff; /* primary color */
+  text-decoration: none; /* remove underline */
+  font-weight: 500;
+  padding: 0.25rem 0.5rem; /* subtle padding for click area */
+  position: relative; /* for hover underline effect */
+  transition: color 0.2s ease;
+}
+
+.nav a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #007bff;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.nav a:hover {
+  color: #0056b3;
+}
+
+.nav a:hover::after {
+  width: 100%; /* underline expands on hover */
 }
 
 .nav button {
@@ -23,23 +59,136 @@ body {
   color: white;
   border: none;
   border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .nav button:hover {
   background-color: #0056b3;
 }
 
-.markdown-container h1 {
+/* Markdown Styles */
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4,
+.markdown-container h5,
+.markdown-container h6 {
   color: #333;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-container p {
+  margin-bottom: 1rem;
 }
 
 .markdown-container ul,
 .markdown-container ol {
-  margin-left: 1.5rem;
+  margin: 0 0 1rem 1.25rem; /* Slightly smaller left padding */
+  padding: 0;
+}
+
+.markdown-container li {
+  margin-bottom: 0.5rem;
 }
 
 .markdown-container code {
   background: #f0f0f0;
   padding: 2px 4px;
   border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.95em;
+}
+
+/* Utility Classes */
+
+/* Spacing */
+.m-0 {
+  margin: 0 !important;
+}
+.m-1 {
+  margin: 0.25rem !important;
+}
+.m-2 {
+  margin: 0.5rem !important;
+}
+.m-3 {
+  margin: 1rem !important;
+}
+.m-4 {
+  margin: 1.5rem !important;
+}
+.m-5 {
+  margin: 2rem !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+.p-1 {
+  padding: 0.25rem !important;
+}
+.p-2 {
+  padding: 0.5rem !important;
+}
+.p-3 {
+  padding: 1rem !important;
+}
+.p-4 {
+  padding: 1.5rem !important;
+}
+.p-5 {
+  padding: 2rem !important;
+}
+
+/* Flex Utilities */
+.flex {
+  display: flex !important;
+}
+.flex-row {
+  flex-direction: row !important;
+}
+.flex-col {
+  flex-direction: column !important;
+}
+.items-center {
+  align-items: center !important;
+}
+.items-start {
+  align-items: flex-start !important;
+}
+.items-end {
+  align-items: flex-end !important;
+}
+.justify-center {
+  justify-content: center !important;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+.gap-1 {
+  gap: 0.25rem !important;
+}
+.gap-2 {
+  gap: 0.5rem !important;
+}
+.gap-3 {
+  gap: 1rem !important;
+}
+.gap-4 {
+  gap: 1.5rem !important;
+}
+.gap-5 {
+  gap: 2rem !important;
+}
+
+/* Text Utilities */
+.text-center {
+  text-align: center !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
 }

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "./App.css";
+import Nav from "./components/Nav.jsx";
 
+// Main App
 export default function App() {
   const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState("");
@@ -28,17 +30,11 @@ export default function App() {
 
   return (
     <div className="app">
-      <nav className="nav">
-        {files.map((file) => (
-          <button
-            key={file}
-            onClick={() => setSelectedFile(file)}
-            className={file === selectedFile ? "active" : ""}
-          >
-            {file.replace(".md", "")}
-          </button>
-        ))}
-      </nav>
+      <Nav
+        files={files}
+        selectedFile={selectedFile}
+        onSelect={setSelectedFile}
+      />
 
       <div className="markdown-container">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
